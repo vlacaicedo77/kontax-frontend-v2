@@ -1,0 +1,100 @@
+<!-- login.page.html (o login.html) -->
+<div class="auth-page">
+  <!-- Fondos laterales -->
+  <div class="side-background left-side" aria-hidden="true">
+    <img src="assets/images/background/fondo_login.jpg" alt="" class="side-image">
+    <div class="side-overlay left-overlay"></div>
+  </div>
+
+  <div class="side-background right-side" aria-hidden="true">
+    <img src="assets/images/background/fondo_rigth.jpg" alt="" class="side-image">
+    <div class="side-overlay right-overlay"></div>
+  </div>
+
+  <!-- Caja login -->
+  <div class="auth-box-alternative">
+    <div class="text-center">
+      <div class="login-logo">
+        <h1 class="system-name m-0" aria-label="Kontax Pro">
+          <span class="name-part-1">KONTAX</span>
+          <span class="name-part-2">PRO</span>
+        </h1>
+      </div>
+      <h2 class="login-title">Bienvenido/a</h2>
+    </div>
+
+    <form class="mt-3" ngNativeValidate [formGroup]="formulario" (ngSubmit)="iniciarSesion()" novalidate>
+      <!-- Usuario -->
+      <div class="form-group mb-3">
+        <label class="visually-hidden" for="usuario">Usuario</label>
+        <input
+          id="usuario"
+          name="usuario"
+          class="form-control custom-input"
+          type="text"
+          placeholder="Usuario"
+          formControlName="usuario"
+          autocomplete="username"
+          required
+        />
+        <i class="input-icon fa-solid fa-id-card" aria-hidden="true"></i>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group mb-3">
+        <label class="visually-hidden" for="password">Contraseña</label>
+
+        <div class="input-group">
+          <input
+            id="password"
+            name="password"
+            class="form-control custom-input"
+            [type]="mostrarPassword ? 'text' : 'password'"
+            placeholder="Contraseña"
+            formControlName="password"
+            autocomplete="current-password"
+            required
+          />
+
+          <i class="input-icon fa-solid fa-lock" aria-hidden="true"></i>
+
+          <button
+            type="button"
+            class="input-group-text eye-toggle"
+            (click)="cambiarVisibilidadPassword()"
+            [attr.aria-label]="mostrarPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+          >
+            <i class="fa show-password" [ngClass]="{ 'fa-eye-slash': !mostrarPassword, 'fa-eye': mostrarPassword }"></i>
+          </button>
+        </div>
+      </div>
+
+      @if (formulario.touched && formulario.hasError('credencialesObligatorias')) {
+        <div class="invalid-feedback credenciales-error d-block">
+          Ingrese usuario y/o contraseña
+        </div>
+      }
+
+      <!-- Recuperar -->
+      <div class="d-flex mb-2">
+        <div class="ms-auto">
+          <a routerLink="/password-recovery" class="forgot-link">
+            <i class="fa fa-lock me-1" aria-hidden="true"></i> Recuperar contraseña
+          </a>
+        </div>
+      </div>
+
+      <!-- Botón login -->
+      <button class="login-btn" type="submit">
+        <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+        Iniciar sesión
+      </button>
+
+      <!-- Botón back -->
+      <button class="back-btn" routerLink="/home" type="button">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        Regresar
+      </button>
+    </form>
+  </div>
+</div>

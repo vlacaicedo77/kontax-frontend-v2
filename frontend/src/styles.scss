@@ -1,0 +1,23 @@
+@use "bootstrap/scss/bootstrap";
+
+/* KONTAX – VARIABLES GLOBALES */
+:root {
+  --primary-color: #22c55e;
+  --primary-light: #86efac;
+  --primary-dark: #16a34a;
+  --primary-accent: #4ade80;
+
+  --white: #ffffff;
+  --light-bg: #f0fdf4;
+  --light-gray: #dcfce7;
+  --medium-gray: #6b7280;
+  --dark-gray: #14532d;
+  --text-dark: #052e16;
+  --text-light: #4b5563;
+
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(34, 197, 94, 0.25);
+  --shadow-light: rgba(34, 197, 94, 0.12);
+  --shadow-medium: rgba(74, 222, 128, 0.2);
+}
+
