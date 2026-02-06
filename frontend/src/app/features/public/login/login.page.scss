@@ -6,7 +6,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; // evita scroll raro con fondos
+  overflow: hidden;
+
+  /* ✅ esto mata el blanco fuerte del centro */
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.25) 0%,
+    rgba(255,255,255,0.85) 50%,
+    rgba(255,255,255,0.25) 100%
+  );
 }
 
 /* Caja */
@@ -26,9 +34,12 @@
   z-index: 10;
 }
 
+
 /* Logo */
 .login-logo { margin-bottom: 20px; }
 .system-name { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+.name-part-1 { color: var(--dark-gray); }
+.name-part-2 { color: var(--primary-dark); }
 .login-title { color: var(--text-dark); font-weight: 600; font-size: 1.4rem; margin-bottom: 30px; }
 
 /* Inputs */
@@ -67,25 +78,37 @@
 }
 
 /* Password group */
-.input-group { position: relative; }
-.input-group .input-icon { z-index: 4; }
-.input-group .custom-input { padding-right: 60px; }
+.input-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+.input-group .input-icon { z-index: 6; }
+.input-group .custom-input {
+  flex: 1 1 auto;
+  min-width: 0; /* clave para que no empuje al botón hacia abajo */
+}
+
+.input-group .custom-input {
+  border-radius: 12px 0 0 12px;
+}
+.eye-toggle {
+  border-radius: 0 12px 12px 0;
+}
 
 .eye-toggle {
-  background: transparent;
-  border: 2px solid var(--light-gray);
-  border-left: none;
-  border-radius: 0 12px 12px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  flex: 0 0 auto;
+
+  /* altura consistente con tu input */
   padding: 0 14px;
 }
 
 .eye-toggle:hover {
-  background: var(--primary-light);
+  background: var(--primary-dark);
   color: var(--white);
 }
 
@@ -175,6 +198,9 @@
 .side-overlay.right-overlay {
   background: linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 40%, transparent 100%);
 }
+
+.side-background.left-side { width: 37%; }
+.side-background.right-side { width: 63%; }
 
 /* Responsive */
 @media (max-width: 768px) {

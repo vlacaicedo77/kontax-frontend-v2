@@ -36,6 +36,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -54,6 +60,17 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "qa": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ],
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -66,6 +83,9 @@
             },
             "development": {
               "buildTarget": "kontax-frontend:build:development"
+            },
+            "qa": {
+              "buildTarget": "kontax-frontend:build:qa"
             }
           },
           "defaultConfiguration": "development"

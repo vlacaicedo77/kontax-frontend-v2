@@ -26,12 +26,12 @@
             </div>
             <!-- Botón de acceso -->
             <div class="access-section">
-              <button class="access-btn" routerLink="/login">
+              <button class="access-btn" type="button" (click)="irLogin()">
                 <div class="btn-content">
-                  <i class="fa-solid fa-user-lock"></i>
+                  <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
                   <span>Ingresar</span>
                 </div>
-                <div class="btn-glow"></div>
+                <div class="btn-glow" aria-hidden="true"></div>
               </button>
             </div>
             <!-- Grid de características -->
@@ -57,7 +57,7 @@
                     </div>
                     <h4>Multiplataforma</h4>
                     <p>Accede desde dispositivos móviles,
-                    tablets y desktop</p>
+                      tablets y desktop</p>
                     <div class="feature-glow"></div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
                     </div>
                     <h4>Documentos Electrónicos</h4>
                     <p>Emisión y autorización automática de comprobantes electrónicos integrado con
-                    el SRI.</p>
+                      el SRI.</p>
                     <div class="feature-glow"></div>
                   </div>
                 </div>

@@ -2,12 +2,12 @@
 <div class="auth-page">
   <!-- Fondos laterales -->
   <div class="side-background left-side" aria-hidden="true">
-    <img src="assets/images/background/fondo_login.jpg" alt="" class="side-image">
+    <img src="/images/background/fondo_login.jpg" alt="" class="side-image">
     <div class="side-overlay left-overlay"></div>
   </div>
 
   <div class="side-background right-side" aria-hidden="true">
-    <img src="assets/images/background/fondo_rigth.jpg" alt="" class="side-image">
+    <img src="/images/background/fondo_rigth.jpg" alt="" class="side-image">
     <div class="side-overlay right-overlay"></div>
   </div>
 
@@ -69,6 +69,13 @@
         </div>
       </div>
 
+      @if (errorMsg) {
+        <div class="invalid-feedback credenciales-error d-block">
+          {{ errorMsg }}
+        </div>
+      }
+
+
       @if (formulario.touched && formulario.hasError('credencialesObligatorias')) {
         <div class="invalid-feedback credenciales-error d-block">
           Ingrese usuario y/o contraseña
@@ -91,7 +98,7 @@
       </button>
 
       <!-- Botón back -->
-      <button class="back-btn" routerLink="/home" type="button">
+      <button class="back-btn" routerLink="/" type="button">
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
         Regresar
       </button>
