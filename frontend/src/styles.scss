@@ -1,6 +1,6 @@
 @use "bootstrap/scss/bootstrap";
 
-/* KONTAX – VARIABLES GLOBALES */
+/* KONTAX – VARIABLES GLOBALES (Light) */
 :root {
   --primary-color: #22c55e;
   --primary-light: #86efac;
@@ -19,5 +19,346 @@
   --glass-border: rgba(34, 197, 94, 0.25);
   --shadow-light: rgba(34, 197, 94, 0.12);
   --shadow-medium: rgba(74, 222, 128, 0.2);
+
+  /* ✅ tokens UI */
+  --surface: #ffffff;
+  /* tarjetas, sidebar */
+  --surface-2: #f6f7fb;
+  /* fondo general */
+  --border: rgba(15, 23, 42, 0.10);
+  --text: #0f172a;
+  --text-muted: rgba(15, 23, 42, 0.65);
+
+  /* ✅ acento usado por UI (light usa primary-dark) */
+  --accent: var(--primary-dark);
+
+  --btn-bg: var(--surface);
+  --btn-border: rgba(15, 23, 42, 0.12);
+  --icon: var(--text);
+
+  --hover-bg: rgba(15, 23, 42, 0.04);
+  --hover-border: rgba(15, 23, 42, 0.06);
+
+  --shadow-elev: 0 20px 50px rgba(15, 23, 42, 0.18);
+
+  --switch-bg: rgba(15, 23, 42, 0.12);
+  --switch-knob: #ffffff;
+
+  --danger: #b91c1c;
+  --danger-bg: rgba(239, 68, 68, 0.06);
+  --danger-border: rgba(239, 68, 68, 0.18);
+  --danger-hover-bg: #ef4444;
+  --danger-hover-text: #ffffff;
 }
 
+/* KONTAX – DARK MODE (solo cuando el wrapper tenga data-theme="dark") */
+[data-theme="dark"] {
+  /* base */
+  --white: #0b1220;
+  --light-bg: #0b1220;
+  --light-gray: rgba(255, 255, 255, 0.08);
+  --medium-gray: rgba(255, 255, 255, 0.72);
+  --dark-gray: rgba(255, 255, 255, 0.85);
+  --text-dark: rgba(255, 255, 255, 0.92);
+  --text-light: rgba(255, 255, 255, 0.72);
+
+  /* glass */
+  --glass-bg: rgba(15, 23, 42, 0.80);
+  --glass-border: rgba(34, 197, 94, 0.22);
+  --shadow-light: rgba(0, 0, 0, 0.35);
+  --shadow-medium: rgba(0, 0, 0, 0.45);
+
+  /* tokens UI */
+  --surface: #48494d;
+  /* paneles: sidebar, dropdown, topbar */
+  --surface-2: #3f4044;
+  /* fondo general */
+  --border: rgba(255, 255, 255, 0.14);
+  --text: rgba(255, 255, 255, 0.95);
+  --text-muted: rgba(255, 255, 255, 0.70);
+
+  /* ✅ acento en dark: verde más claro que resalte */
+  --accent: #4ade80;
+
+  --btn-bg: var(--surface);
+  --btn-border: rgba(255, 255, 255, 0.18);
+  --icon: var(--text);
+
+  --hover-bg: rgba(255, 255, 255, 0.08);
+  --hover-border: rgba(255, 255, 255, 0.16);
+
+  --shadow-elev:
+    0 12px 32px rgba(0, 0, 0, 0.35),
+    0 4px 10px rgba(0, 0, 0, 0.25);
+
+  --switch-bg: rgba(255, 255, 255, 0.25);
+  --switch-knob: #ffffff;
+
+  /* danger en dark (texto más claro) */
+  --danger: #fca5a5;
+  --danger-bg: rgba(239, 68, 68, 0.14);
+  --danger-border: rgba(239, 68, 68, 0.30);
+  --danger-hover-bg: #ef4444;
+  --danger-hover-text: #ffffff;
+}
+
+/*INVALID FEEDBACK*/
+.invalid-feedback.credenciales-error {
+  font-weight: 700 !important;
+  color: #dc3545 !important;
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   SweetAlert2 theme (KONTAX) – Modern Elegant
+   ========================================= */
+
+/* Overlay uniforme (opaco, sin círculo) */
+.swal2-container {
+  background: rgba(2, 6, 23, 0.62) !important;
+  /* slate-950-ish */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Popup base */
+.kx-swal {
+  border-radius: 22px !important;
+  padding: 22px 22px 18px !important;
+
+  /* Usa tus tokens */
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+
+  /* Elevación elegante */
+  box-shadow: var(--shadow-elev) !important;
+
+  /* Glass muy sutil (sin “brillar”) */
+  background-image: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.35)) !important;
+}
+
+/* En dark, quita ese “glass” claro para que no se lave */
+[data-theme="dark"] .kx-swal {
+  background-image: none !important;
+}
+
+/* Tipografías */
+.kx-swal-title {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--text) !important;
+  margin-bottom: 4px !important;
+}
+
+.kx-swal-text {
+  color: var(--text-muted) !important;
+  font-size: 14.5px !important;
+  line-height: 1.45 !important;
+}
+
+/* Layout de acciones (botones) */
+.swal2-actions {
+  margin-top: 16px !important;
+  gap: 10px !important;
+}
+
+/* Botones – base */
+.kx-swal-btn {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  min-width: 124px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+  outline: none;
+}
+
+/* Botones – base: sin sombra */
+.kx-swal-btn {
+  box-shadow: none !important;
+}
+
+/* CTA (OK) */
+.kx-swal-btn--ok {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: none !important;
+}
+
+/* Secundario (NO / cancelar / cerrar) */
+.kx-swal-btn--no {
+  background: var(--danger-hover-bg);
+  /* #ef4444 */
+  color: var(--danger-hover-text);
+  /* #ffffff */
+  border-color: transparent;
+  box-shadow: none !important;
+}
+
+/* Hover / active elegante */
+
+.kx-swal-btn:active {
+  transform: translateY(0px);
+  filter: brightness(0.99);
+}
+
+/* Hover/active sin sombras */
+.kx-swal-btn--ok:hover,
+.kx-swal-btn--no:hover {
+  box-shadow: none !important;
+  filter: brightness(1.03);
+}
+
+/* Iconos SweetAlert2 – más finos */
+.swal2-icon {
+  transform: scale(0.95);
+  margin: 14px auto 6px !important;
+}
+
+/* Ajustes por tipo (opcional, se ve pro) */
+.swal2-icon.swal2-success {
+  border-color: rgba(34, 197, 94, 0.35) !important;
+}
+
+.swal2-icon.swal2-success [class^="swal2-success-line"] {
+  background-color: rgba(34, 197, 94, 0.95) !important;
+}
+
+.swal2-icon.swal2-error {
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+
+.swal2-icon.swal2-error .swal2-x-mark-line-left,
+.swal2-icon.swal2-error .swal2-x-mark-line-right {
+  background-color: rgba(239, 68, 68, 0.95) !important;
+}
+
+.swal2-icon.swal2-warning {
+  border-color: rgba(245, 158, 11, 0.40) !important;
+  color: rgba(245, 158, 11, 0.95) !important;
+}
+
+.swal2-icon.swal2-info {
+  border-color: rgba(59, 130, 246, 0.40) !important;
+  color: rgba(59, 130, 246, 0.95) !important;
+}
+
+/* =========================
+   Loading brand + dots (KONTAXPRO)
+   ========================= */
+
+.kx-brand {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1;
+  margin: 2px 0 10px;
+  line-height: 1;
+  user-select: none;
+}
+
+.kx-brand__kontax,
+.kx-brand__pro {
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  font-size: 20px;
+}
+
+.kx-brand__kontax {
+  color: var(--text);
+}
+
+.kx-brand__pro {
+  color: var(--accent);
+}
+
+/* Dots loader */
+.kx-dots {
+  display: inline-flex;
+  gap: 7px;
+  height: 14px;
+  align-items: center;
+}
+
+.kx-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0.28;
+  animation: kxDots 0.95s ease-in-out infinite;
+}
+
+.kx-dots span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.kx-dots span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+@keyframes kxDots {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.28;
+  }
+
+  50% {
+    transform: translateY(-4px);
+    opacity: 0.95;
+  }
+}
+
+/* =========================
+     Botones: hover notorio, sin movimiento
+     ========================= */
+
+.kx-swal-btn {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* OK */
+.kx-swal-btn--ok {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* NO (rojo) */
+.kx-swal-btn--no {
+  background: var(--danger-hover-bg);
+  color: var(--danger-hover-text);
+  border-color: transparent;
+}
+
+/* Hover: resalte claro (sin mover) */
+.kx-swal-btn--ok:hover {
+  filter: brightness(1.06) saturate(1.05);
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.22) !important;
+}
+
+.kx-swal-btn--no:hover {
+  filter: brightness(1.04) saturate(1.05);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18) !important;
+}
+
+/* Focus accesible */
+.kx-swal-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.18) !important;
+}
+
+[data-theme="dark"] .kx-swal-btn--ok:hover {
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25) !important;
+}
+
+[data-theme="dark"] .kx-swal-btn--no:hover {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.22) !important;
+}

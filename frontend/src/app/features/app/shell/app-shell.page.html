@@ -1,0 +1,129 @@
+<div id="kontax-layout">
+  <div class="shell" [class.sidebar-open]="sidebarOpen()" [class.sidebar-collapsed]="isDesktop() && sidebarCollapsed()">
+    <!-- HEADER -->
+    <header class="topbar">
+      <button class="icon-btn" type="button" (click)="toggleSidebar()" aria-label="Abrir menú">
+        <span class="burger" aria-hidden="true"></span>
+      </button>
+
+      <div class="brand">
+        <span class="brand-kontax">KONTAX</span>
+        <span class="brand-pro">PRO</span>
+      </div>
+
+      <div class="topbar-right">
+        <button class="user-trigger" type="button" (click)="toggleUserMenu($event)"
+          [attr.aria-expanded]="userMenuOpen()" aria-label="Abrir menú de usuario">
+          <span class="user-dot" aria-hidden="true">
+            <i class="fa-solid fa-user"></i>
+          </span>
+
+          <span class="user-trigger-text">
+            <span class="user-trigger-caret" aria-hidden="true">▾</span>
+          </span>
+        </button>
+
+        <div class="user-menu" [class.open]="userMenuOpen()" (click)="$event.stopPropagation()">
+          <div class="user-menu-head">
+            <div class="who">
+              @if (userNum()) {
+                <div class="who-chip">
+                  <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+                   {{ userNum() }}
+                </div>
+              }
+              <div class="who-name">{{ userName() }}</div>
+              <div class="who-email">{{ userEmail() }}</div>
+            </div>
+
+            <div class="avatar" aria-hidden="true" title="Usuario">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+          </div>
+
+          <div class="user-menu-items">
+            <a class="menu-item" routerLink="/app/profile" (click)="closeUserMenu()">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i>
+              <span>Mi cuenta</span>
+            </a>
+
+            <a class="menu-item disabled" href="javascript:void(0)">
+              <i class="fa-solid fa-wave-square" aria-hidden="true"></i>
+              <span>Log de actividad</span>
+            </a>
+
+            <button class="menu-item" type="button" (click)="toggleTheme()">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i>
+              <span>Modo oscuro</span>
+              <span class="spacer"></span>
+
+              <!-- switch visual -->
+              <span class="switch" [class.on]="isDark()" aria-hidden="true"></span>
+            </button>
+
+            <div class="menu-sep"></div>
+
+            <button class="menu-item danger" type="button" (click)="logoutFromMenu()">
+              <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+              <span>Cerrar sesión</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- OVERLAY (móvil) -->
+    <div class="overlay" (click)="closeSidebar()" aria-hidden="true"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Panel de control">
+      <div class="sidebar-head">
+        <div class="sidebar-title">Panel de control</div>
+        <button class="icon-btn close-btn" type="button" (click)="closeSidebar()" aria-label="Cerrar Panel">
+          ✕
+        </button>
+      </div>
+
+      <nav class="nav">
+        @for (item of menu(); track item.label) {
+        @if (!hasChildren(item)) {
+        <a class="nav-item" [routerLink]="item.route" routerLinkActive="active" (click)="closeSidebar()">
+          @if (item.icon) {
+          <i class="{{ item.icon }}" aria-hidden="true"></i>
+          }
+          <span class="nav-label">{{ item.label }}</span>
+        </a>
+        } @else {
+        <button type="button" class="nav-item nav-parent" [class.active-parent]="isItemActive(item, currentUrl())"
+          (click)="toggleGroup(item.label)" [attr.aria-expanded]="isGroupOpen(item.label)">
+          <span class="nav-left">
+            @if (item.icon) {
+            <i class="{{ item.icon }}" aria-hidden="true"></i>
+            }
+            <span class="nav-label">{{ item.label }}</span>
+          </span>
+          <span class="chev" [class.open]="isGroupOpen(item.label)">▾</span>
+        </button>
+
+        <div class="nav-children" [class.open]="isGroupOpen(item.label)">
+          @for (child of item.children; track child.label) {
+          <a class="nav-item nav-child" [routerLink]="child.route" routerLinkActive="active" (click)="closeSidebar()">
+            @if (child.icon) {
+            <i class="{{ child.icon }}" aria-hidden="true"></i>
+            }
+            <span class="nav-label">{{ child.label }}</span>
+          </a>
+          }
+        </div>
+        }
+        }
+      </nav>
+
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

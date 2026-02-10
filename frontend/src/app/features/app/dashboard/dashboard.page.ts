@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-dashboard',
   imports: [CommonModule],
   template: `
-    <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
-      <h1>Dashboard</h1>
-      <p>Kontax privado ✅</p>
-
-      <button (click)="logout()"
-        style="padding:10px 16px;border-radius:8px;border:none;cursor:pointer;">
-        Cerrar sesión
-      </button>
+    <div class="card">
+      <h1 class="title">Dashboard</h1>
+      <p class="sub">Zona privada ✅</p>
+      <p class="hint">Aquí irán los módulos (ventas, compras, reportes) según tu menú.</p>
     </div>
   `,
+  styles: [`
+    .card{
+      background:#fff;
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 20px rgba(15,23,42,.06);
+    }
+    .title{ margin:0 0 6px; font-size: 22px; font-weight: 800; }
+    .sub{ margin:0 0 10px; opacity:.8; }
+    .hint{ margin:0; opacity:.7; }
+  `],
 })
-export class DashboardPage {
-  constructor(private router: Router) {}
-
-  logout() {
-    localStorage.clear();
-    this.router.navigateByUrl('/public/login');
-  }
-}
+export class DashboardPage {}

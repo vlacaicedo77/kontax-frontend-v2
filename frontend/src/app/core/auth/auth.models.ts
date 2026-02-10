@@ -3,7 +3,7 @@ export type EstadoApi = 'OK' | 'ERR';
 export interface ApiResponse<T> {
   estado: EstadoApi;
   mensaje: string;
-  resultado?: T; // solo cuando estado === 'OK'
+  resultado?: T;
 }
 
 export interface LoginPayload {
@@ -16,6 +16,7 @@ export interface UsuarioSesion {
   numeroIdentificacion: string;
   nombreCompleto: string;
   email: string | null;
+  theme?: 'light' | 'dark';
 }
 
 export interface LoginResultado {
@@ -29,11 +30,13 @@ export interface LoginResultado {
     numero_identificacion: string;
     nombre_completo: string;
     email: string | null;
+    theme?: 'light' | 'dark';
   };
   sesion: {
     id: number;
     sesion_activa_anterior: boolean;
   };
+  menu?: MenuItemApi[];
 }
 
 export interface RefreshResultado {
@@ -50,5 +53,14 @@ export interface MeResultado {
     numero_identificacion: string;
     nombre_completo: string;
     email: string | null;
+    theme?: 'light' | 'dark';
   };
+  menu?: MenuItemApi[];
+}
+
+export interface MenuItemApi {
+  label: string;
+  route?: string;
+  icon?: string;
+  children?: MenuItemApi[];
 }
